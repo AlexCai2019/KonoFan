@@ -17,6 +17,7 @@ public class IDAndEntities
     public static final long FRISK = 730053049044697178L;
     public static final long SHIZUKA = 416120741298307082L;
     public static final long ZEKK = 474892449857142785L;
+    public static final long HENRY = 416120741298307082L;
     public static Guild konoFanServer;
     public static TextChannel lobbyChannel;
     public static TextChannel botChannel;
