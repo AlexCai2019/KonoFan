@@ -12,7 +12,7 @@ public class Logger
         try
         {
             FileWriter fileWriter = new FileWriter("logs/" + LocalDate.now(), true);
-            fileWriter.write(LocalTime.now() + "\t" + value);
+            fileWriter.write(LocalTime.now() + "\t" + value + "\n");
             fileWriter.close();
         }
         catch (IOException e)

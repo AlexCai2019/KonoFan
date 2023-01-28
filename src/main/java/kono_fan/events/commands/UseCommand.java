@@ -1,6 +1,6 @@
 package kono_fan.events.commands;
 
-import kono_fan.KonoFan;
+import kono_fan.utilities.IDAndEntities;
 import kono_fan.utilities.Logger;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -27,11 +27,12 @@ public class UseCommand extends ListenerAdapter
             long imageID = author.artworks()[random.nextInt(author.artworks().length)];
             event.reply("https://twitter.com/" + author.name() + "/status/" + imageID).queue();
         });
+        commandsMap.put("introduce", new UserInformation());
         commandsMap.put("shutdown", event ->
         {
             event.reply("關機中...").queue();
-            if (KonoFan.lobbyChannel != null)
-                KonoFan.lobbyChannel.sendMessage("下線").queue();
+            IDAndEntities.lobbyChannel.sendMessage("下線").queue();
+            Logger.log("下線");
             event.getJDA().shutdown();
         });
     }
@@ -39,14 +40,13 @@ public class UseCommand extends ListenerAdapter
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event)
     {
-        super.onSlashCommandInteraction(event);
         String commandName = event.getName();
         ICommand command = commandsMap.get(commandName);
         if (command != null)
         {
             command.commandProcess(event);
             User user = event.getUser();
-            Logger.log("User " + user.getName() + "(" + user.getId() + ") used " + commandName);
+            Logger.log("User " + user.getName() + "(" + user.getId() + ") used /" + commandName);
         }
     }
 }
