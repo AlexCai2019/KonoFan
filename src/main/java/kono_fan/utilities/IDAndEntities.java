@@ -15,6 +15,7 @@ public class IDAndEntities
     public static final long BIN = 762206337093599252L;
     public static final long DRAGON_SAMA = 193016802765176832L;
     public static final long FRISK = 730053049044697178L;
+    public static final long SHIZUKA = 416120741298307082L;
     public static final long ZEKK = 474892449857142785L;
     public static Guild konoFanServer;
     public static TextChannel lobbyChannel;
