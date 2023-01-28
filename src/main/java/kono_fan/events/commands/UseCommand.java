@@ -19,7 +19,11 @@ public class UseCommand extends ListenerAdapter
 
     public UseCommand()
     {
-        commandsMap.put("help", event -> event.reply("`/invite`: 獲得本群邀請連結\n`/megumin`: 獲得一張惠惠圖").queue());
+        commandsMap.put("help", event -> event.reply(
+                """
+                        `/invite`: 獲得本群邀請連結
+                        `/megumin`: 獲得一張惠惠圖
+                        `/introduce <user_name>: 介紹一名使用者""").queue());
         commandsMap.put("invite", event -> event.reply("https://discord.gg/4pxSyQFTJT").queue());
         commandsMap.put("megumin", event ->
         {

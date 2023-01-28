@@ -21,7 +21,6 @@ public class BotOnline extends ListenerAdapter
             Logger.log("Can't get KonoFan server.");
             System.exit(-1);
         }
-        IDAndEntities.konoFanServerName = IDAndEntities.konoFanServer.getName();
 
         IDAndEntities.lobbyChannel = IDAndEntities.konoFanServer.getChannelById(TextChannel.class, IDAndEntities.LOBBY_CHANNEL); //大廳頻道
         if (IDAndEntities.lobbyChannel == null)
@@ -40,15 +39,6 @@ public class BotOnline extends ListenerAdapter
             Logger.log("Can't get KonoFan server bot channel.");
             System.exit(-1);
         }
-
-        IDAndEntities.loveYunYun = IDAndEntities.konoFanServer.getRoleById(IDAndEntities.LOVE_YUN_YUN_ROLE);
-        if (IDAndEntities.loveYunYun == null)
-        {
-            System.err.println("Can't get love Yun Yun.");
-            Logger.log("Can't get love Yun Yun.");
-            System.exit(-1);
-        }
-        IDAndEntities.loveYunYunName = IDAndEntities.loveYunYun.getName();
 
         IDAndEntities.gay = IDAndEntities.konoFanServer.getRoleById(IDAndEntities.GAY_ROLE);
         if (IDAndEntities.gay == null)

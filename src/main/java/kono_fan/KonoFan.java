@@ -3,7 +3,6 @@ package kono_fan;
 import kono_fan.events.BotOnline;
 import kono_fan.events.DirectMessageListener;
 import kono_fan.events.MessageListener;
-import kono_fan.events.ServerUpdateListener;
 import kono_fan.events.commands.UseCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -26,8 +25,7 @@ public class KonoFan
                 .addEventListeners(new MessageListener(),
                                    new DirectMessageListener(),
                                    new UseCommand(),
-                                   new BotOnline(),
-                                   new ServerUpdateListener())
+                                   new BotOnline())
                 .setActivity(Activity.watching("Alex Cai's YouTube"))
                 .build();
 
