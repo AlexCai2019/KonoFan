@@ -30,21 +30,24 @@ public class MessageListener extends ListenerAdapter
         Message message = event.getMessage(); //訊息
         String rawMessage = message.getContentRaw(); //訊息字串
         MessageChannelUnion channel = event.getChannel(); //接收到訊息的頻道
+        long memberID = member.getIdLong();
 
-        if (member.getRoles().contains(IDAndEntities.gay) && random.nextInt(20) == 0) //當使用者擁有Gay身分組
+        //當使用者不是AC 且擁有Gay身分組 或者是巧虎
+        if (random.nextInt(20) == 0 && memberID != IDAndEntities.AC &&
+                (memberID == IDAndEntities.AMX || member.getRoles().contains(IDAndEntities.gay)))
             channel.sendMessage("Gay式發言").queue(); //5%機率說出Gay式發言
 
-        if (rawMessage.contains("CodeYan") || rawMessage.contains("codeyan"))
+        if (rawMessage.contains("CodeYan") || rawMessage.contains("codeyan") || rawMessage.contains("Codeyan"))
             message.addReaction(VT_rushiacry).queue();
 
         if (rawMessage.contains("megumin") || rawMessage.contains("Megumin") || rawMessage.contains("惠惠") || rawMessage.contains("めぐみん"))
             channel.sendMessage("☆めぐみん大好き！☆").queue();
 
-        if (rawMessage.contains("炫富") && random.nextInt(10) == 0) //當訊息內含「炫富」
+        if (random.nextInt(10) == 0 && rawMessage.contains("炫富")) //當訊息內含「炫富」
             channel.sendMessage("https://media.discordapp.net/attachments/976460093950394388/1026871205879349258/image0.jpg").queue();
             //10%機率說出巧虎一毫秒不炫富真的渾身不舒服
 
-        if (member.getIdLong() == IDAndEntities.AMX) //當使用者是巧虎
+        if (memberID == IDAndEntities.AMX) //當使用者是巧虎
         {
             if (rawMessage.contains("cmonBruh"))
                 message.addReaction(head_cmonPlease).queue();
