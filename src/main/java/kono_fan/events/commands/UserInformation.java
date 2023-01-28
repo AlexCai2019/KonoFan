@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import org.jetbrains.annotations.NotNull;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,9 +36,7 @@ public class UserInformation implements ICommand
                 自稱在大學時就跟女人破了處，但還沒跟男人破另一邊的處。
                 和Frisk糾纏不清，曾經在Zekk出現之前幾乎吃定了Frisk，只是後來又對他失去興趣。
                 養了一隻狗名叫Maru，但對方似乎對他愛理不理的樣子。
-                雖然是自己主動提議的，但直到現在都還沒有女裝直播，都已經""" + LocalDate.now().getYear() +
-                """
-                年了，至今我們都還在等著。
+                雖然是自己主動提議的，但直到現在都還沒有女裝直播，都已經2023年了，至今我們都還在等著。
                 愛好是每天晚上都和地下室的50蘿莉夜夜笙歌，經常因此而上班遲到，
                 但由於上班只是興趣，老闆為了避免公司被收購還是處處讓著他。
                 有一部描寫他的文章叫做「信義區行走禽獸異聞錄」，巧妙的融合了4凸9800的事件。
@@ -60,9 +57,9 @@ public class UserInformation implements ICommand
                 """
                 又被稱作龍王，
                 是非洲手遊俱樂部的Konosuba Fantastic Days大佬，經常上傳各種攻略影片。
-                擁有過人的反應力及智慧，自小便展現不凡的天賦，在群內也是一等一的智商擔當，雖然有時候會說出一些大叔老梗。
                 頻道 <https://www.youtube.com/@abc1215241>
-                是巧虎還在大愛電視台的時候，少數知道其本名及面貌的人。
+                擁有過人的反應力及智慧，自小便展現不凡的天賦，在群內也是一等一的智商擔當，雖然有時候會說出一些大叔老梗。
+                身為首席考虎學家，是巧虎還在大愛電視台的時候，少數知道其本名及面貌的人。
                 被AC找到FB後，說了一句「你都偷看我的FB，好色哦」，之後便經常被當作是AC的伴侶。
                 身為芸芸控，甚至動用公權力，私自在群組內創造了ゆんゆん私の花嫁身分組。
                 是護國神山台積電的員工，未來的科技新貴。
@@ -110,11 +107,12 @@ public class UserInformation implements ICommand
                 """
                 沒有人知道他的真實樣貌，沒有人知道他這麼做的意義是什麼，就像謎一般的存在。
                 目前已知曾獲得3個Nitro還有8個Twitch訂閱，喜歡隨時改自己Discord的頭貼跟暱稱。
-                似乎不想繼續留個gay身分組。
+                似乎不想繼續留著gay身分組。
                 自稱莉亞廚，但除了Fes莉亞外都沒認真抽過莉亞，也沒什麼在練羈絆和神廟。
                 曾經會提起學妹的事，但被龍王點到之後學妹就像消失了一樣，從此沒再出現在群裡的聊天過了。
                 DC暱稱比巧虎的老二還不安份，所以大部分時候都是靠身份組的偶像莉亞圖示來辨認。
-                最近學會了\\@，於是開始在群裡頻繁使用。""");
+                最近學會了\\\\@，於是開始在群裡頻繁使用。
+                """);
 
         //amx群主屁眼派對#3416
         usersInformation.put(IDAndEntities.THIS_BOT,
