@@ -35,7 +35,8 @@ public class UseCommand extends ListenerAdapter
         commandsMap.put("shutdown", event ->
         {
             event.reply("關機中...").queue();
-            IDAndEntities.lobbyChannel.sendMessage("下線").queue();
+            // 將下線訊息發送到機器人頻道中
+            IDAndEntities.botChannel.sendMessage("下線").queue();
             Logger.log("下線");
             event.getJDA().shutdown();
         });

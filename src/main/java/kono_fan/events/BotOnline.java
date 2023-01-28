@@ -29,8 +29,6 @@ public class BotOnline extends ListenerAdapter
             Logger.log("Can't get KonoFan server lobby channel.");
             System.exit(-1);
         }
-        IDAndEntities.lobbyChannel.sendMessage("上線").queue(); //傳送上線
-        Logger.log("上線"); //紀錄上線
 
         IDAndEntities.botChannel = IDAndEntities.konoFanServer.getChannelById(TextChannel.class, IDAndEntities.BOT_CHANNEL); //機器人頻道
         if (IDAndEntities.lobbyChannel == null)
@@ -39,6 +37,8 @@ public class BotOnline extends ListenerAdapter
             Logger.log("Can't get KonoFan server bot channel.");
             System.exit(-1);
         }
+        IDAndEntities.lobbyChannel.sendMessage("上線").queue(); //傳送上線
+        Logger.log("上線"); //紀錄上線
 
         IDAndEntities.gay = IDAndEntities.konoFanServer.getRoleById(IDAndEntities.GAY_ROLE);
         if (IDAndEntities.gay == null)
