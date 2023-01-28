@@ -31,11 +31,11 @@ public class UserInformation implements ICommand
                 """
                 又被稱作巧虎、蘿莉控、信義區會行走的衣冠禽獸，
                 是非洲手遊俱樂部的群主，也是男同俱樂部的榮譽會長。
+                身為非洲手遊俱樂部的財力頂點，十分有錢，甚至經常和台灣百大企業家吃飯。
+                家中有許多金條，擁有10張信義區的地契，在台灣各地的精華地帶都有置產。
                 從小就到美國讀書的海龜，認為台灣只是個小地方。
                 自稱在大學時就跟女人破了處，但還沒跟男人破另一邊的處。
                 和Frisk糾纏不清，曾經在Zekk出現之前幾乎吃定了Frisk，只是後來又對他失去興趣。
-                身為非洲手遊俱樂部的財力頂點，十分有錢，甚至經常和台灣百大企業家吃飯。
-                擁有10張信義區的地契，在台灣各地的精華地帶都有置產。
                 養了一隻狗名叫Maru，但對方似乎對他愛理不理的樣子。
                 雖然是自己主動提議的，但直到現在都還沒有女裝直播，都已經""" + LocalDate.now().getYear() +
                 """
@@ -60,8 +60,12 @@ public class UserInformation implements ICommand
                 """
                 又被稱作龍王，
                 是非洲手遊俱樂部的Konosuba Fantastic Days大佬，經常上傳各種攻略影片。
+                擁有過人的反應力及智慧，自小便展現不凡的天賦，在群內也是一等一的智商擔當，雖然有時候會說出一些大叔老梗。
+                頻道 <https://www.youtube.com/@abc1215241>
+                是巧虎還在大愛電視台的時候，少數知道其本名及面貌的人。
                 被AC找到FB後，說了一句「你都偷看我的FB，好色哦」，之後便經常被當作是AC的伴侶。
                 身為芸芸控，甚至動用公權力，私自在群組內創造了ゆんゆん私の花嫁身分組。
+                是護國神山台積電的員工，未來的科技新貴。
                 """);
 
         //［香澄我婆］夢行者 Frisk#0173
@@ -79,9 +83,9 @@ public class UserInformation implements ICommand
         //無物為真________#2068
         usersInformation.put(IDAndEntities.HENRY,
                 """
-                人稱阿田、田佬，被群主稱呼為 Henry。是另一個伺服器「夜幕X多元伺服器」的服主。
-                身為另一個伺服器的服主，他的實力自然不在話下。雖然身為假日有時還要上班的社畜，但依舊精通許多手遊和電腦遊戲，
-                包含但不限於之前的 FD，現在的公連、碧藍航線及 Call of Duty。
+                又被稱作阿田、田佬，被群主稱呼為Henry。
+                身為另一個伺服器「夜幕X多元伺服器」的服主，他的實力自然不在話下。
+                雖然身為假日有時還要上班的社畜，但依舊精通許多手遊和電腦遊戲，包含但不限於之前的FD，現在的公連、碧藍航線及Call of Duty。
                 雖然不是相關背景出身，但懂很多電腦相關的東西。對其他現實生活中的知識也有廣泛的涉獵。
                 是三次元中與Frisk最熟的群員，兩人常相約看展、逛光華以及吃飯。
                 """);
@@ -100,6 +104,17 @@ public class UserInformation implements ICommand
                 和阿田關係很好，常常和阿田一起對包含但不限於巧虎的發言按表情符號。
                 雖然常常被說老，但不知是習慣了還是知道解釋也沒有用了，默默接受了群組大家長這個身份，並常常不經意的對年輕的群友釋出長輩的關懷。
                 """);
+
+        //真惠的天祈🐝SkyBlessed#6128
+        usersInformation.put(IDAndEntities.SKY_BLESSED,
+                """
+                沒有人知道他的真實樣貌，沒有人知道他這麼做的意義是什麼，就像謎一般的存在。
+                目前已知曾獲得3個Nitro還有8個Twitch訂閱，喜歡隨時改自己Discord的頭貼跟暱稱。
+                似乎不想繼續留個gay身分組。
+                自稱莉亞廚，但除了Fes莉亞外都沒認真抽過莉亞，也沒什麼在練羈絆和神廟。
+                曾經會提起學妹的事，但被龍王點到之後學妹就像消失了一樣，從此沒再出現在群裡的聊天過了。
+                DC暱稱比巧虎的老二還不安份，所以大部分時候都是靠身份組的偶像莉亞圖示來辨認。
+                最近學會了\\@，於是開始在群裡頻繁使用。""");
 
         //amx群主屁眼派對#3416
         usersInformation.put(IDAndEntities.THIS_BOT,
@@ -124,7 +139,7 @@ public class UserInformation implements ICommand
                 """
                 又被稱作阿賓、鳳梨大學生、嬌小害羞鳳梨男孩。
                 是非洲手遊俱樂部的男同聚樂部會長，和ロリのパンツ一起當阿賓好兄弟。
-                自稱自己資工很爛，但其實程式很強（能用 C 語言駕馭 LeetCode，這只有大佬才做得到），只是本人從不承認。
+                自稱自己資工很爛，但其實程式很強（能用C語言駕馭LeetCode，這只有大佬才做得到），只是本人從不承認。
                 說自己沒有強的科目，實際上是因為每個科目都無人能敵。
                 聲音聽起來感覺就像會在床上一邊壞笑對對方說我今天要弄壞你，一邊把人家衣服慢慢扒開的1號。
                 和Frisk關係匪淺，曾問對方可不可以同床摸摸。
@@ -139,7 +154,9 @@ public class UserInformation implements ICommand
         {
             String information = usersInformation.get(wantToKnow.getIdLong());
             String profileImage = wantToKnow.getAvatarUrl();
-            event.reply(information != null ? ("**" + wantToKnow.getAsTag() + "**，" + information + (profileImage != null ? profileImage : wantToKnow.getDefaultAvatarUrl())) : "我沒有關於這位使用者的資訊。").queue();
+            if (profileImage == null)
+                profileImage = wantToKnow.getDefaultAvatarUrl();
+            event.reply(information != null ? "**" + wantToKnow.getAsTag() + "**，" + information + profileImage : "我沒有關於這位使用者的資訊。").queue();
         }
         else
             event.reply("請輸入一位使用者。").queue();

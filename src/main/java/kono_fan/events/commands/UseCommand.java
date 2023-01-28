@@ -28,8 +28,8 @@ public class UseCommand extends ListenerAdapter
         commandsMap.put("megumin", event ->
         {
             TwitterAuthor author = twitterAuthors[random.nextInt(twitterAuthors.length)];
-            long imageID = author.artworks()[random.nextInt(author.artworks().length)];
-            event.reply("https://twitter.com/" + author.name() + "/status/" + imageID).queue();
+            long[] artworks = author.artworks();
+            event.reply("https://twitter.com/" + author.name() + "/status/" + artworks[random.nextInt(artworks.length)]).queue();
         });
         commandsMap.put("introduce", new UserInformation());
         commandsMap.put("shutdown", event ->

@@ -15,7 +15,7 @@ public class MessageListener extends ListenerAdapter
 {
     private final Emoji head_cmonPlease = Emoji.fromCustom("head_cmonPlease", 1004415142596968559L, false);
     private final Emoji VT_rushiacry = Emoji.fromCustom("VT_rushiacry", 805837203833880638L, false);
-    private final Emoji arrow_upper_left = Emoji.fromFormatted("arrow_upper_left");
+    private final Emoji arrow_upper_left = Emoji.fromUnicode("U+2196");
     private final Emoji c_lie = Emoji.fromCustom("c_lie", 861601187509829643L, false);
     private final Emoji c_you = Emoji.fromCustom("c_you", 871031987610202122L, false);
     private final Emoji zekk1 = Emoji.fromCustom("zekk1", 1000314923039064134L, false);
@@ -40,12 +40,15 @@ public class MessageListener extends ListenerAdapter
         if (rawMessage.contains("CodeYan") || rawMessage.contains("codeyan") || rawMessage.contains("Codeyan"))
             message.addReaction(VT_rushiacry).queue();
 
-        if (rawMessage.contains("megumin") || rawMessage.contains("Megumin") || rawMessage.contains("惠惠") || rawMessage.contains("めぐみん"))
+        if (rawMessage.contains("惠惠") || rawMessage.contains("megumin") || rawMessage.contains("Megumin") || rawMessage.contains("めぐみん"))
             channel.sendMessage("☆めぐみん大好き！☆").queue();
 
         if (random.nextInt(10) == 0 && rawMessage.contains("炫富")) //當訊息內含「炫富」
             channel.sendMessage("https://media.discordapp.net/attachments/976460093950394388/1026871205879349258/image0.jpg").queue();
             //10%機率說出巧虎一毫秒不炫富真的渾身不舒服
+
+        if (message.getMentions().isMentioned(IDAndEntities.gay, Message.MentionType.ROLE))
+            channel.sendMessage("<@170985598297964544>").queue();
 
         if (memberID == IDAndEntities.AMX) //當使用者是巧虎
         {
