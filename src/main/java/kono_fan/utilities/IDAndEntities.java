@@ -19,6 +19,7 @@ public class IDAndEntities
     public static final long THIS_BOT = 895703640453578753L;
     public static final long TOYAMA_KASUMI = 861936582746832916L;
     public static final long ZEKK = 474892449857142785L;
+    public static final long HENRY = 416120741298307082L;
     public static Guild konoFanServer;
     public static TextChannel lobbyChannel;
     public static TextChannel botChannel;
