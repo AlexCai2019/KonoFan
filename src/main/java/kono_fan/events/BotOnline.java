@@ -31,7 +31,7 @@ public class BotOnline extends ListenerAdapter
         }
 
         IDAndEntities.botChannel = IDAndEntities.konoFanServer.getChannelById(TextChannel.class, IDAndEntities.BOT_CHANNEL); //機器人頻道
-        if (IDAndEntities.lobbyChannel == null)
+        if (IDAndEntities.botChannel == null)
         {
             System.err.println("Can't get KonoFan server bot channel.");
             Logger.log("Can't get KonoFan server bot channel.");
