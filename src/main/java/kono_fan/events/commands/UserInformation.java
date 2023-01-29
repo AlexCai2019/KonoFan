@@ -1,6 +1,7 @@
 package kono_fan.events.commands;
 
 import kono_fan.utilities.IDAndEntities;
+import kono_fan.utilities.Logger;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
@@ -151,10 +152,11 @@ public class UserInformation implements ICommand
         if (wantToKnow != null)
         {
             String information = usersInformation.get(wantToKnow.getIdLong());
-            String profileImage = wantToKnow.getAvatarUrl();
-            if (profileImage == null)
-                profileImage = wantToKnow.getDefaultAvatarUrl();
-            event.reply(information != null ? "**" + wantToKnow.getAsTag() + "**，" + information + profileImage : "我沒有關於這位使用者的資訊。").queue();
+            String profileImage = wantToKnow.getEffectiveAvatarUrl();
+            String wantToKnowTag = wantToKnow.getAsTag();
+            event.reply(information != null ? "**" + wantToKnowTag + "**，" + information + profileImage : "我沒有關於這位使用者的資訊。").queue();
+            User user = event.getUser();
+            Logger.log("User " + user.getName() + "(" + user.getId() + ") used /introduce " + wantToKnowTag);
         }
         else
             event.reply("請輸入一位使用者。").queue();
