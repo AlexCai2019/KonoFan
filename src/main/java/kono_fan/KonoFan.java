@@ -4,7 +4,6 @@ import kono_fan.events.BotOnline;
 import kono_fan.events.DirectMessageListener;
 import kono_fan.events.MessageListener;
 import kono_fan.events.commands.UseCommand;
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
@@ -13,6 +12,8 @@ import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
+import static kono_fan.utilities.IDAndEntities.jda;
+
 public class KonoFan
 {
     public static void main(String[] args) throws InterruptedException
@@ -20,7 +21,7 @@ public class KonoFan
         if (args.length < 1)
             return;
 
-        JDA jda = JDABuilder.createDefault(args[0])
+        jda = JDABuilder.createDefault(args[0])
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .addEventListeners(new MessageListener(),
                                    new DirectMessageListener(),

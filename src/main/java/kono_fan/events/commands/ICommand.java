@@ -15,11 +15,11 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
  */
 public interface ICommand
 {
-    /**
-     * <p>
-     * 實際處理指令的方法。
-     * </p>
-     * @param event 斜線指令的事件，攜帶了指令資訊和使用者資訊
-     */
-    void commandProcess(SlashCommandInteractionEvent event); //指令
+	/**
+	 * <p>
+	 * 實際處理指令的方法。
+	 * </p>
+	 * @param event 斜線指令的事件，攜帶了指令資訊和使用者資訊
+	 */
+	void commandProcess(SlashCommandInteractionEvent event); //指令
 }
