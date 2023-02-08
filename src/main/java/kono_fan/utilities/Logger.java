@@ -9,16 +9,18 @@ public class Logger
 {
 	public static void log(String value)
 	{
+		LocalTime now = LocalTime.now();
+		String logString = String.format("%02d:%02d:%02d\t%s\n", now.getHour(), now.getMinute(), now.getSecond(), value);
 		try
 		{
 			FileWriter fileWriter = new FileWriter("logs/" + LocalDate.now(), true);
-			fileWriter.write(LocalTime.now() + "\t" + value + "\n");
+			fileWriter.write(logString);
 			fileWriter.close();
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace(System.err);
-			System.exit(-1);
+			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 }

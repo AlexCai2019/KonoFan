@@ -1,7 +1,5 @@
 package kono_fan.events.commands;
 
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-
 /**
  * <p>
  *     {@code ICommand} 介面是每一個斜線指令處理實體的通用介面，只有一個 {@link ICommand#commandProcess} 方法，令其可以使用
@@ -21,5 +19,5 @@ public interface ICommand
 	 * </p>
 	 * @param event 斜線指令的事件，攜帶了指令資訊和使用者資訊
 	 */
-	void commandProcess(SlashCommandInteractionEvent event); //指令
+	void commandProcess(net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent event); //指令
 }

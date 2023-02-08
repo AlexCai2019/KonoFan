@@ -20,10 +20,12 @@ public class DirectMessageListener extends ListenerAdapter
 		{
 			Message message = event.getMessage();
 			String rawMessage = message.getContentRaw();
-			String attachments = "\n" + message.getAttachments().stream().map(Message.Attachment::getUrl).collect(Collectors.joining("\n"));
-			IDAndEntities.botChannel.sendMessage(rawMessage + attachments).queue(); //私訊轉到機器人互動
+			String attachments = message.getAttachments().stream().map(Message.Attachment::getUrl).collect(Collectors.joining("\n"));
+			if (attachments.length() > 0)
+				rawMessage += "\n" + attachments;
+			IDAndEntities.botChannel.sendMessage(rawMessage).queue(); //私訊轉到機器人互動
 			User user = event.getAuthor();
-			Logger.log("User " + user.getName() + "(" + user.getId() + ") typed " + rawMessage + attachments + " in direct message");
+			Logger.log("User " + user.getName() + "(" + user.getId() + ") typed " + rawMessage + " in direct message");
 		}
 	}
 }

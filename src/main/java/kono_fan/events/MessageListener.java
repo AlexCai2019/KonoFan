@@ -4,18 +4,28 @@ import kono_fan.utilities.IDAndEntities;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.Message.MentionType;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
 import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+ * <p>
+ *     {@code MessageListener} 是監聽伺服器內訊息的類別，在 {@link kono_fan.KonoFan#main(String[])} 內註冊。擁有一
+ *     個從 {@link ListenerAdapter} 繼承而來的方法 {@link #onMessageReceived(MessageReceivedEvent)}，針對群組內的
+ *     訊息做出反應。
+ * </p>
+ *
+ * @author Alex Cai
+ * @since 1.0
+ */
 public class MessageListener extends ListenerAdapter
 {
 	private final Emoji head_cmonPlease = Emoji.fromCustom("head_cmonPlease", 1004415142596968559L, false);
@@ -57,12 +67,24 @@ public class MessageListener extends ListenerAdapter
 			channel.sendMessage("https://media.discordapp.net/attachments/976460093950394388/1026871205879349258/image0.jpg").queue();
 
 		//有人tag gay身分組
-		if (message.getMentions().isMentioned(IDAndEntities.gay, Message.MentionType.ROLE))
+		if (message.getMentions().isMentioned(IDAndEntities.gay, MentionType.ROLE))
 			channel.sendMessage("<@170985598297964544>").queue();
 
 		//群主女裝
 		if (rawMessage.contains("女裝") && rawMessage.contains("群主") && !rawMessage.contains("不"))
 			channel.sendMessage("不女裝，枉為虎").queue();
+
+		//早安
+		if (rawMessage.contains("早安"))
+			channel.sendMessage("早上好中國 現在我有Bing Chilling").queue();
+
+		//午安
+		//if (rawMessage.contains("午安"))
+			//channel.sendMessage("").queue();
+
+		//晚安
+		if (rawMessage.contains("晚安"))
+			channel.sendMessage("那我也要睡啦").queue();
 
 		//訊息連結
 		if (rawMessage.matches("https://discord\\.com/channels/\\d+/\\d+/\\d+"))
@@ -79,12 +101,17 @@ public class MessageListener extends ListenerAdapter
 					linkChannel = linkGuild.getChannelById(TextChannel.class, messageLink[1]);
 					if (linkChannel != null)
 					{
-						linkChannel.retrieveMessageById(messageLink[2]).queue((linkMessage ->
-								channel.sendMessage(linkMessage.getAuthor().getAsTag() + "\n" +
-									linkMessage.getContentRaw() + "\n" + linkMessage.getAttachments()
-										.stream()
-										.map(Message.Attachment::getUrl)
-										.collect(Collectors.joining("\n"))).queue()));
+						linkChannel.retrieveMessageById(messageLink[2]).queue(linkMessage ->
+						{
+							String linkAuthorName = linkMessage.getAuthor().getAsTag();
+							String linkMessageCreateTime = linkMessage.getTimeCreated().toString();
+							String linkMessageRaw = linkMessage.getContentRaw();
+							String linkAttachments = linkMessage.getAttachments().stream()
+									  .map(Message.Attachment::getUrl).collect(Collectors.joining("\n"));
+
+							channel.sendMessage(linkAuthorName + " " + linkMessageCreateTime + "\n" +
+														linkMessageRaw + "\n" + linkAttachments).queue();
+						});
 					}
 				}
 			}
