@@ -10,11 +10,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserInformation implements ICommand
+public class IntroduceCommand implements ICommand
 {
 	private final Map<Long, String> usersInformation = new HashMap<>();
 
-	UserInformation()
+	public IntroduceCommand()
 	{
 		//AlexCai#2019
 		usersInformation.put(IDAndEntities.AC,

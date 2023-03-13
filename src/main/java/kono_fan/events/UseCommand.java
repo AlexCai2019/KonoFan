@@ -1,8 +1,10 @@
-package kono_fan.events.commands;
+package kono_fan.events;
 
+import kono_fan.events.commands.ICommand;
+import kono_fan.events.commands.IntroduceCommand;
+import kono_fan.events.commands.QuoteCommand;
 import kono_fan.utilities.IDAndEntities;
 import kono_fan.utilities.Logger;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +22,7 @@ import java.util.Random;
  *
  * @author Alex Cai
  * @see ICommand
- * @see UserInformation
+ * @see IntroduceCommand
  * @since 1.0
  */
 public class UseCommand extends ListenerAdapter
@@ -31,7 +33,7 @@ public class UseCommand extends ListenerAdapter
 
 	/**
 	 * 初始化 {@link #commandsMap}，放入指令名字和他們對應的 {@link ICommand} 實體。除了 /introduce 使用
-	 * {@link UserInformation} {@code implements} 之外，其他指令都使用Lambda建立實體。
+	 * {@link IntroduceCommand} {@code implements} 之外，其他指令都使用Lambda建立實體。
 	 */
 	public UseCommand()
 	{
@@ -47,7 +49,8 @@ public class UseCommand extends ListenerAdapter
 			long[] artworks = author.artworks();
 			event.reply("https://twitter.com/" + author.name() + "/status/" + artworks[random.nextInt(artworks.length)]).queue();
 		});
-		commandsMap.put("introduce", new UserInformation());
+		commandsMap.put("introduce", new IntroduceCommand());
+		commandsMap.put("quote", new QuoteCommand());
 		commandsMap.put("shutdown", event ->
 		{
 			event.reply("關機中...").queue();
@@ -71,12 +74,7 @@ public class UseCommand extends ListenerAdapter
 		String commandName = event.getName();
 		ICommand command = commandsMap.get(commandName);
 		if (command != null)
-		{
 			command.commandProcess(event);
-			User user = event.getUser();
-			if (!commandName.equals("introduce"))
-				Logger.log("User " + user.getName() + "(" + user.getId() + ") used /" + commandName);
-		}
 	}
 }
 

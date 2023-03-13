@@ -1,13 +1,11 @@
 package kono_fan.events;
 
 import kono_fan.utilities.IDAndEntities;
-import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Message.MentionType;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.entities.channel.ChannelType;
-import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -15,7 +13,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -32,7 +29,7 @@ public class MessageListener extends ListenerAdapter
 	private final Emoji head_cmonPlease = Emoji.fromCustom("head_cmonPlease", 1004415142596968559L, false);
 	private final Emoji catsmile = Emoji.fromCustom("catsmile", 847792833884979230L, false);
 	private final Emoji VT_rushiacry = Emoji.fromCustom("VT_rushiacry", 805837203833880638L, false);
-	private final Emoji arrow_upper_left = Emoji.fromUnicode(":arrow_upper_left:");
+	private final Emoji arrow_upper_left = Emoji.fromUnicode("↖");
 	private final Emoji c_lie = Emoji.fromCustom("c_lie", 861601187509829643L, false);
 	private final Emoji c_you = Emoji.fromCustom("c_you", 871031987610202122L, false);
 	private final Emoji zekk1 = Emoji.fromCustom("zekk1", 1000314923039064134L, false);
@@ -42,14 +39,13 @@ public class MessageListener extends ListenerAdapter
 	private final Pattern meguminRegex = Pattern.compile("(?i).*megumin.*");
 	private final Pattern lolRegex = Pattern.compile("(?i).*lol*");
 	private final Pattern gayRegex = Pattern.compile("(?i).*gay.*");
-	private final Pattern guildMessageLinkRegex = Pattern.compile("https://discord\\.com/channels/\\d+/\\d+/\\d+");
 
 	private final Random random = new Random();
 
 	@Override
 	public void onMessageReceived(@NotNull MessageReceivedEvent event)
 	{
-		if (!event.isFromType(ChannelType.TEXT))
+		if (!event.isFromGuild())
 			return;
 		Member member = event.getMember();
 		User user = event.getAuthor(); //發送訊息的人
@@ -57,7 +53,7 @@ public class MessageListener extends ListenerAdapter
 			return;
 		Message message = event.getMessage(); //訊息
 		String rawMessage = message.getContentRaw(); //訊息字串
-		TextChannel channel = event.getChannel().asTextChannel(); //接收到訊息的頻道
+		MessageChannel channel = event.getChannel(); //接收到訊息的頻道
 		long userID = user.getIdLong();
 
 		//當使用者不是AC 且擁有Gay身分組 或者是巧虎
@@ -83,7 +79,7 @@ public class MessageListener extends ListenerAdapter
 			channel.sendMessage("https://media.discordapp.net/attachments/976460093950394388/1026871205879349258/image0.jpg").queue();
 
 		//有人tag gay身分組
-		if (message.getMentions().isMentioned(IDAndEntities.gay, MentionType.ROLE, MentionType.ROLE))
+		if (message.getMentions().isMentioned(IDAndEntities.gay, MentionType.ROLE))
 			channel.sendMessage("<@170985598297964544>").queue();
 
 		//群主女裝
@@ -106,15 +102,12 @@ public class MessageListener extends ListenerAdapter
 		if (rawMessage.contains("複讀") || rawMessage.contains("復讀"))
 			channel.sendMessage("你從桃園新竹\n你從桃園新竹\n你從桃園新竹").queue();
 
-		//訊息連結
-		messagePreview(event, rawMessage, channel);
-
 		if (userID == IDAndEntities.AMX) //當使用者是巧虎
 		{
 			if (rawMessage.contains("cmonBruh"))
 				message.addReaction(head_cmonPlease).queue();
 
-			if (rawMessage.contains("catBruh"))
+			if (rawMessage.contains("catbruh"))
 				message.addReaction(catsmile).queue();
 
 			if (rawMessage.contains("沒錢") || rawMessage.contains("窮"))
@@ -132,36 +125,5 @@ public class MessageListener extends ListenerAdapter
 			if (rawMessage.contains("蘿"))
 				message.addReaction(c_fbi).queue();
 		}
-	}
-
-	private void messagePreview(MessageReceivedEvent event, String rawMessage, TextChannel channel)
-	{
-		if (!guildMessageLinkRegex.matcher(rawMessage).matches())
-			return;
-
-		Guild linkGuild;
-		TextChannel linkChannel;
-		String[] messageLink = rawMessage.substring(29).split("/");
-		if (messageLink[0].equals("@me")) //不是從伺服器來的
-			return;
-
-		linkGuild = IDAndEntities.jda.getGuildById(messageLink[0]);
-		if (linkGuild != event.getGuild())
-			return;
-
-		linkChannel = linkGuild.getChannelById(TextChannel.class, messageLink[1]);
-		if (linkChannel == null)
-			return;
-
-		linkChannel.retrieveMessageById(messageLink[2]).queue(linkMessage ->
-		{
-			  String linkAuthorName = linkMessage.getAuthor().getAsTag();
-			  String linkMessageCreateTime = linkMessage.getTimeCreated().toString();
-			  String linkMessageRaw = linkMessage.getContentRaw();
-			  String linkAttachments = linkMessage.getAttachments().stream()
-					  .map(Message.Attachment::getUrl).collect(Collectors.joining("\n"));
-
-			  channel.sendMessage(linkAuthorName + " " + linkMessageCreateTime + "\n" + linkMessageRaw + "\n" + linkAttachments).queue();
-		});
 	}
 }

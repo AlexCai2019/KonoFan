@@ -1,5 +1,7 @@
 package kono_fan.events.commands;
 
+import kono_fan.events.UseCommand;
+
 /**
  * <p>
  *     {@code ICommand} 介面是每一個斜線指令處理實體的通用介面，只有一個 {@link ICommand#commandProcess} 方法，令其可以使用
@@ -8,7 +10,7 @@ package kono_fan.events.commands;
  *
  * @author Alex Cai
  * @see UseCommand
- * @see UserInformation
+ * @see IntroduceCommand
  * @since 1.0
  */
 public interface ICommand
