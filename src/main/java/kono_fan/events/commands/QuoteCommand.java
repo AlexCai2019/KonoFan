@@ -36,14 +36,14 @@ public class QuoteCommand implements ICommand
 		MessageChannel linkChannel;
 		String[] messageLink = link.substring(48).split("/");
 
-		linkChannel = IDAndEntities.konoFanServer.getChannelById(MessageChannel.class, messageLink[1]);
+		linkChannel = IDAndEntities.konoFanServer.getChannelById(MessageChannel.class, messageLink[0]);
 		if (linkChannel == null)
 		{
 			event.reply("沒有這個頻道!").queue();
 			return;
 		}
 
-		linkChannel.retrieveMessageById(messageLink[2]).queue(linkMessage ->
+		linkChannel.retrieveMessageById(messageLink[1]).queue(linkMessage ->
 		{
 			User linkAuthor = linkMessage.getAuthor(); //連結訊息的發送者
 
