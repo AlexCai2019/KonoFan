@@ -29,7 +29,7 @@ public class MessageListener extends ListenerAdapter
 	private final Emoji head_cmonPlease = Emoji.fromCustom("head_cmonPlease", 1004415142596968559L, false);
 	private final Emoji catsmile = Emoji.fromCustom("catsmile", 847792833884979230L, false);
 	private final Emoji VT_rushiacry = Emoji.fromCustom("VT_rushiacry", 805837203833880638L, false);
-	private final Emoji arrow_upper_left = Emoji.fromUnicode("↖");
+	private final Emoji arrow_upper_left = Emoji.fromUnicode("↖️");
 	private final Emoji c_lie = Emoji.fromCustom("c_lie", 861601187509829643L, false);
 	private final Emoji c_you = Emoji.fromCustom("c_you", 871031987610202122L, false);
 	private final Emoji zekk1 = Emoji.fromCustom("zekk1", 1000314923039064134L, false);

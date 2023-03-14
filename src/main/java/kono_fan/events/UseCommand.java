@@ -53,11 +53,10 @@ public class UseCommand extends ListenerAdapter
 		commandsMap.put("quote", new QuoteCommand());
 		commandsMap.put("shutdown", event ->
 		{
-			event.reply("關機中...").queue();
 			// 將下線訊息發送到機器人頻道中
 			IDAndEntities.botChannel.sendMessage("下線").queue();
 			Logger.log("下線");
-			IDAndEntities.jda.shutdown();
+			event.reply("關機中...").queue(interactionHook -> IDAndEntities.jda.shutdown());
 		});
 	}
 
@@ -72,6 +71,7 @@ public class UseCommand extends ListenerAdapter
 	public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event)
 	{
 		String commandName = event.getName();
+		Logger.log(event.getUser().getAsTag() + " used /" + commandName);
 		ICommand command = commandsMap.get(commandName);
 		if (command != null)
 			command.commandProcess(event);
