@@ -1,7 +1,6 @@
 package kono_fan.events;
 
 import kono_fan.utilities.IDAndEntities;
-import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Message.MentionType;
 import net.dv8tion.jda.api.entities.User;
@@ -47,20 +46,13 @@ public class MessageListener extends ListenerAdapter
 	{
 		if (!event.isFromGuild())
 			return;
-		Member member = event.getMember();
 		User user = event.getAuthor(); //發送訊息的人
-		if (user.isBot() || member == null) //如果是機器人就不執行了
+		if (user.isBot() || user.isSystem()) //如果是機器人就不執行了
 			return;
 		Message message = event.getMessage(); //訊息
 		String rawMessage = message.getContentRaw(); //訊息字串
 		MessageChannel channel = event.getChannel(); //接收到訊息的頻道
 		long userID = user.getIdLong();
-
-		//當使用者不是AC 且擁有Gay身分組 或者是巧虎
-		int gayChance = random.nextInt(20);
-		if (gayChance == 0 && userID != IDAndEntities.AC &&
-				(userID == IDAndEntities.AMX || member.getRoles().contains(IDAndEntities.gay)))
-			channel.sendMessage("Gay式發言").queue(); //5%機率說出Gay式發言
 
 		//😭
 		if (codeYanRegex.matcher(rawMessage).matches())
@@ -118,12 +110,14 @@ public class MessageListener extends ListenerAdapter
 				message.addReaction(arrow_upper_left).queue();
 				message.addReaction(c_you).queue();
 				message.addReaction(zekk1).queue();
-				if (gayChance != 0)
-					channel.sendMessage("Gay式發言").queue();
+				channel.sendMessage("Gay式發言").queue();
 			}
 
 			if (rawMessage.contains("蘿"))
 				message.addReaction(c_fbi).queue();
+
+			if (random.nextInt(100) == 0)
+				channel.sendMessage("Gay式發言").queue(); //1%機率說出Gay式發言
 		}
 	}
 }
