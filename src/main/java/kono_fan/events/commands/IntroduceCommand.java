@@ -158,10 +158,10 @@ public class IntroduceCommand implements ICommand
 		{
 			String information = usersInformation.get(wantToKnow.getIdLong());
 			String profileImage = wantToKnow.getEffectiveAvatarUrl();
-			String wantToKnowTag = wantToKnow.getAsTag();
-			event.reply(information != null ? "**" + wantToKnowTag + "**，" + information + profileImage : "我沒有關於這位使用者的資訊。").queue();
+			String wantToKnowName = wantToKnow.getEffectiveName();
+			event.reply(information != null ? "**" + wantToKnowName + "**，" + information + profileImage : "我沒有關於這位使用者的資訊。").queue();
 			User user = event.getUser();
-			Logger.log("User " + user.getName() + "(" + user.getId() + ") used /introduce " + wantToKnowTag);
+			Logger.log("User " + user.getName() + "(" + user.getId() + ") used /introduce " + wantToKnowName);
 		}
 		else
 			event.reply("請輸入一位使用者。").queue();

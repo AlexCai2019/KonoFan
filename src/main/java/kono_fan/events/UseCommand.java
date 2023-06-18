@@ -71,7 +71,7 @@ public class UseCommand extends ListenerAdapter
 	public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event)
 	{
 		String commandName = event.getName();
-		Logger.log(event.getUser().getAsTag() + " used /" + commandName);
+		Logger.log(event.getUser().getEffectiveName() + " used /" + commandName);
 		ICommand command = commandsMap.get(commandName);
 		if (command != null)
 			command.commandProcess(event);
